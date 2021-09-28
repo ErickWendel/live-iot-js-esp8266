@@ -5,15 +5,6 @@
     "disabled": false,
     "info": ""
 }, {
-    "id": "3cc11d24.ff01a2",
-    "type": "comment",
-    "z": "f6f2187d.f17ca8",
-    "name": "WARNING: please check you have started this container with a volume that is mounted to /data\\n otherwise any flow changes are lost when you redeploy or upgrade the container\\n (e.g. upgrade to a more recent node-red docker image).\\n  If you are using named volumes you can ignore this warning.\\n Double click or see info side panel to learn how to start Node-RED in Docker to save your work",
-    "info": "\nTo start docker with a bind mount volume (-v option), for example:\n\n```\ndocker run -it -p 1880:1880 -v /home/user/node_red_data:/data --name mynodered nodered/node-red\n```\n\nwhere `/home/user/node_red_data` is a directory on your host machine where you want to store your flows.\n\nIf you do not do this then you can experiment and redploy flows, but if you restart or upgrade the container the flows will be disconnected and lost. \n\nThey will still exist in a hidden data volume, which can be recovered using standard docker techniques, but that is much more complex than just starting with a named volume as described above.",
-    "x": 350,
-    "y": 80,
-    "wires": []
-}, {
     "id": "ef3caef1.f2924",
     "type": "http in",
     "z": "f6f2187d.f17ca8",
@@ -34,8 +25,8 @@
     "name": "",
     "statusCode": "",
     "headers": {},
-    "x": 370,
-    "y": 420,
+    "x": 450,
+    "y": 360,
     "wires": []
 }, {
     "id": "3ac1c5.796eae3c",
@@ -54,8 +45,8 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 200,
-    "y": 340,
+    "x": 240,
+    "y": 360,
     "wires": [
         ["ea3eae25.6ce62"]
     ]
@@ -76,10 +67,10 @@
     "from": "",
     "to": "",
     "reg": false,
-    "x": 460,
+    "x": 540,
     "y": 260,
     "wires": [
-        ["59ec6dc0.a00ce4"]
+        ["37dc838d.0d1bfc"]
     ]
 }, {
     "id": "62533f1f.d3a34",
@@ -97,63 +88,47 @@
     "y": 180,
     "wires": []
 }, {
-    "id": "319ebcba.0990d4",
-    "type": "ui_text",
+    "id": "37dc838d.0d1bfc",
+    "type": "ui_switch",
     "z": "f6f2187d.f17ca8",
+    "name": "lampSwitch",
+    "label": "",
+    "tooltip": "",
     "group": "93fae10c.09faa",
     "order": 1,
     "width": "9",
     "height": "4",
-    "name": "",
-    "label": "",
-    "format": "<font color={{msg.payload}}><i class=\"center fa fa-5x fas fa-lightbulb-o\"></i></font>",
-    "layout": "col-center",
+    "passthru": true,
+    "decouple": "false",
+    "topic": "topic",
+    "topicType": "msg",
+    "style": "",
+    "onvalue": "true",
+    "onvalueType": "bool",
+    "onicon": "fa-lightbulb-o center fa fas fa-5x",
+    "oncolor": "yellow",
+    "offvalue": "false",
+    "offvalueType": "bool",
+    "officon": "fa-lightbulb-o center fa fas fa-5x",
+    "offcolor": "gray",
+    "animate": true,
     "className": "",
-    "x": 910,
-    "y": 320,
-    "wires": []
-}, {
-    "id": "59ec6dc0.a00ce4",
-    "type": "change",
-    "z": "f6f2187d.f17ca8",
-    "name": "",
-    "rules": [{
-        "t": "change",
-        "p": "payload",
-        "pt": "msg",
-        "from": "true",
-        "fromt": "bool",
-        "to": "gray",
-        "tot": "str"
-    }, {
-        "t": "change",
-        "p": "payload",
-        "pt": "msg",
-        "from": "false",
-        "fromt": "bool",
-        "to": "yellow",
-        "tot": "str"
-    }],
-    "action": "",
-    "property": "",
-    "from": "",
-    "to": "",
-    "reg": false,
-    "x": 680,
-    "y": 340,
+    "x": 900,
+    "y": 240,
     "wires": [
-        ["319ebcba.0990d4"]
-    ]
+        []
+    ],
+    "icon": "font-awesome/fa-lightbulb-o"
 }, {
     "id": "93fae10c.09faa",
     "type": "ui_group",
     "name": "Light Status",
     "tab": "bd0a34ae.3ad828",
     "order": 1,
-    "disp": true,
+    "disp": false,
     "width": "9",
     "collapse": false,
-    "className": ""
+    "className": "center"
 }, {
     "id": "bd0a34ae.3ad828",
     "type": "ui_tab",
