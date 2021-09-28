@@ -11,8 +11,8 @@ const ldrPin = A0;
 const minValue = 1;
 
 const URL = 'http://192.168.15.72:1880/lightSensor';
-const WIFI_NAME = "Erick Wendel";
-const WIFI_OPTIONS = { password: "" };
+const WIFI_NAME = "XuxaNet";
+const WIFI_OPTIONS = { password: "Hackerzao123" };
 
 
 function promisify(fn, args) {
