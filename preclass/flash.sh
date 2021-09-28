@@ -4,8 +4,8 @@
 
 # pip3 show esptool
 # chmod +x /usr/local/lib/python3.9/site-packages/esptool.py
+alias esptool='/usr/local/lib/pytehon3.9/site-packages/esptool.py'
 # ls /dev/tty.* 
-alias esptool='/usr/local/lib/python3.9/site-packages/esptool.py'
 
 PORT=/dev/tty.wchusbserial14620
 BAUD=115200
@@ -17,4 +17,3 @@ esptool  --port $PORT --baud $BAUD \
   0x0000 "binaries/boot_v1.6.bin" 0x1000 "binaries/espruino_esp8266_user1.bin" \
   0x3FC000 "binaries/esp_init_data_default.bin" 0x3FE000 "binaries/blank.bin"
 # screen $PORT $BAUD
-

@@ -125,5 +125,6 @@ save();
 
 /*
  espruino -p "/dev/tty.wchusbserial14620" -b 115200 LightRgb.js
+ espruino -p "/dev/tty.wchusbserial14620" -b 115200 -n
  espruino -p tcp://192.168.15.82 -b 115200 LightRgb.js
  */

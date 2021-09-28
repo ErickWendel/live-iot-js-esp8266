@@ -1,22 +1,148 @@
+
+
+https://www.espruino.com/Internet#http-post
+https://www.espruino.com/EspruinoESP8266  
+https://cyberblogspot.com/nodemcu-v3-esp8266-pinout-and-configuration/
+https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/
+https://www.espruino.com/ESP8266_Flashing
+
+====
 https://www.espruino.com/
     Documentation 
         Other Boards
             Find esp8266
+		
+    Choose esp8266 2v09 folder
+    Show esptool https://github.com/espressif/esptool
 
-    Get Espruino => Download Firmware
-    choose esp8266
-   https://www.espruino.com/EspruinoESP8266  
+    Download Firmware https://www.espruino.com/binaries/espruino_2v09_esp8266_4mb/
+    https://www.espruino.com/EspruinoESP8266  
+        https://www.espruino.com/ESP8266_Flashing
+        touch flash.sh 
+        all
 
-   flash 
-    https://www.espruino.com/ide
-        config and change baud rate
+    https://www.espruino.com/ide -> no chrome
+        config and change baud rate 115200
         connect
             web serial
             esp8266
 
-            analogWrite(D5, 0)
-            analogWrite(D6, 0)
-            analogWrite(D7, 0)
+            analogWrite(D5, 0) // 14
+            analogWrite(D6, 0) // 12
+            analogWrite(D7, 0) // 13
 
-    https://www.espruino.com/Internet#http-post
+        reset()
+        reset(true)
+        E.reboot()
+
+    Primeiro passo, descobrir quais são as portas que podemos usar - mostrar pinout
+    https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/
+
+    Descobrir a tensão do sensor - lsd
+        Google => RGB sensor voltage
+        RGBColor
+            show https://arduinomodules.info/ky-016-rgb-full-color-led-module/
+            voltagem maxima a 5v -> não se preocupar   
+    show  
+        https://create.arduino.cc/projecthub/muhammad-aqib/arduino-rgb-led-tutorial-fc003e
+
+    touch LightRgb.js
+        consts of pins 
+        RGBColor 
+        handleRGB
+
+        let isLightOff = false;
+        setInterval(() => {
+            isLightOff = !isLightOff
+            handleRGB(isLightOff)
+        })
+    npm i -g espruino 
+        LightRgb
+            /*
+            espruino -p "/dev/tty.wchusbserial14620" -b 115200 -n
+            espruino -p "/dev/tty.wchusbserial14620" -b 115200 LightRgb.js
+            espruino -p tcp://192.168.15.82 -b 115200 LightRgb.js
+            */
+    Descobrir a tensão do sensor - lsd
+        Google => ldr sensor voltage
+    LightRgb.js
+    main()
+        isLightOff    
+            show the Internet device
+            const of Wifi on top (DONT SHOW IN LIVE)
+
+            show docs -> https://www.espruino.com/WiFi
+            promisify
+            connectWifi
+            run
+            connect via nc ip 23
+            espruino -p tcp://192.168.15.82 -b 115200 LightRgb.js
+
+
+            if (alreadyConnected) {
+                    add if 
+
+            show https://www.espruino.com/Internet#http-post
+            copy 
+            postJSON
+                paste and refactor
+                URL invalid yet
+            run
+
+    NodeRed
+        touch nodered.sh 
+        run 
+        browser
+        http://localhost:1880/
+
+        http-in 
+            POST
+            /lightSensor
+        set
+            foi que foi 
+        http-response
+        debug
+
+        http-in 
+            GET 
+            /hello
+             plug on response
+        deploy 
+
+    LightRgb.js
+        ifconfig | grep 192
+        update url with IP
+        deploy
+        show show messages arriving on NodeRed
     
+    NodeRed
+        move 
+            msg.payload.isLightOff
+            msg.payload
+
+        menu manage pallete
+        install 
+        node-red-dashboard
+
+        switch 
+            Icon custom
+                On Icon: fa-lightbulb-o center fa fas fa-5x
+                Color: yellow
+                Off Icon: fa-lightbulb-o center fa fas fa-5x
+                Color: gray
+                lampSwitch
+                size 9x4
+            Group
+                add new ui group 
+                Tab 
+                    add new ui tab 
+                        Light Status
+                        class center
+        menu dashboard 
+        theme style 
+            dark
+        deploy 
+        show show messages comming from esp and changing colors
+
+        
+        
