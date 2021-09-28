@@ -1,3 +1,9 @@
+const WIFI_NAME = "Erick Wendel";
+const WIFI_OPTIONS = { password: "" };
+
+
+
+
 
 const request = require('http').request;
 const Wifi = require("Wifi");
@@ -11,8 +17,6 @@ const ldrPin = A0;
 const minValue = 1;
 
 const URL = 'http://192.168.15.72:1880/lightSensor';
-const WIFI_NAME = "XuxaNet";
-const WIFI_OPTIONS = { password: "Hackerzao123" };
 
 
 function promisify(fn, args) {
@@ -83,6 +87,7 @@ function isLightOff() {
     return ldrStatus == minValue;
 }
 
+let myIp = '';
 function main() {
     const wifiStatus = Wifi.getStatus();
     const alreadyConnected = wifiStatus.station == "connected";
@@ -91,13 +96,15 @@ function main() {
         digitalWrite(ledBuiltIn, LOW);
         return;
     }
-    else {
+    if (alreadyConnected) {
+        if (!myIp) myIp = Wifi.getIP().ip
+
+        console.log('MyIP is:', myIp)
         digitalWrite(ledBuiltIn, HIGH);
     }
 
     return Promise.resolve()
         .then(() => connectWifi(alreadyConnected))
-        .then(() => console.log('MyIP:', Wifi.getIP().ip))
         .then(() => isLightOff())
         .then((isOff) => {
             handleRBG(isOff);
@@ -107,6 +114,7 @@ function main() {
         // .then((response) => console.log("NodeRed Response: ", response))
         .catch(error => {
             console.log('Deu Ruim', error);
+            if (!error) return;
             console.log('Deu Ruim', error.stack);
         });
 
@@ -116,7 +124,6 @@ setInterval(() => main(), 200);
 save();
 
 /*
- espruino -p "/dev/tty.wchusbserial14620" --board "ESP8266_4MB" LightRgb.js
  espruino -p "/dev/tty.wchusbserial14620" -b 115200 LightRgb.js
  espruino -p tcp://192.168.15.82 -b 115200 LightRgb.js
  */
