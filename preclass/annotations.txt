@@ -1,0 +1,22 @@
+https://www.espruino.com/
+    Documentation 
+        Other Boards
+            Find esp8266
+
+    Get Espruino => Download Firmware
+    choose esp8266
+   https://www.espruino.com/EspruinoESP8266  
+
+   flash 
+    https://www.espruino.com/ide
+        config and change baud rate
+        connect
+            web serial
+            esp8266
+
+            analogWrite(D5, 0)
+            analogWrite(D6, 0)
+            analogWrite(D7, 0)
+
+    https://www.espruino.com/Internet#http-post
+    
