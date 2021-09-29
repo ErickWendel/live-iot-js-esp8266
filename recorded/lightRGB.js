@@ -16,7 +16,7 @@ const ledBuiltIn = 2;//D7;
 const ldrPin = A0;
 const minValue = 1;
 
-const URL = 'http://192.168.15.72:1881/lightSensor';
+const URL = 'http://192.168.15.72:1880/lightSensor';
 
 
 function promisify(fn, args) {
@@ -111,7 +111,7 @@ function main() {
             return isOff;
         })
         .then((isOff) => postJSON(URL, { isLightOff: isOff }))
-        // .then((response) => console.log("NodeRed Response: ", response))
+        .then((response) => console.log("NodeRed Response: ", response))
         .catch(error => {
             console.log('Deu Ruim', error);
             if (!error) return;

@@ -4,10 +4,10 @@
 
 # pip3 show esptool
 # chmod +x /usr/local/lib/python3.9/site-packages/esptool.py
-alias esptool='/usr/local/lib/pytehon3.9/site-packages/esptool.py'
+alias esptool='/usr/local/lib/python3.9/site-packages/esptool.py'
 # ls /dev/tty.* 
 
-PORT=/dev/tty.wchusbserial14620
+PORT=/dev/tty.wchusbserial14640
 BAUD=115200
 
 esptool --port $PORT erase_flash
